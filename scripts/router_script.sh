@@ -50,7 +50,6 @@
 echo '
 auto lo
 iface lo inet loopback
-
 auto enp0s8
 iface enp0s8 inet static
         address 192.168.50.1
@@ -61,4 +60,6 @@ iface enp0s8 inet static
 
   sudo ip a flush enp0s8
   sudo systemctl restart networking.service
-  sudo systemctl restart isc-dhcp-server
+  sudo systemctl restart isc-dhcp-server 
+  sudo apt-get install iptables-persistent
+

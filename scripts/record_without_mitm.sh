@@ -48,4 +48,3 @@ tshark -nr /tmp/02_decrypted.pcap -T json -Y http -e http.request.line > /tmp/03
 #HERE FILE WITH MITM PROXY ENCRYPTION IS NOT USED, ONLY WITH REAL USER'S ENCRYPTION
 chmod a+rw /tmp/01_encrypted.pcap /tmp/03_headers.json
 sudo -i -u linuxlite /bin/bash -c "(cd /home/linuxlite/mitmengine && go run cmd/demo/my_main.go -handshake /tmp/01_encrypted.pcap -header /tmp/03_headers.json)"
-

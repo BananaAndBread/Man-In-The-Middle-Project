@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ -z "${MITMDUMP}" ]; then
+  MITMDUMP=./mitmdump
+fi
+
+echo "! Using mitmdump from '$MITMDUMP'"
+
 #prepare inputs for the mitmengine
 rm /tmp/01_encrypted.pcap
 touch /tmp/01_encrypted.pcap
@@ -21,7 +27,7 @@ ip6tables -t nat -A PREROUTING -i enp0s8 -p tcp --dport 80 -j REDIRECT --to-port
 ip6tables -t nat -A PREROUTING -i enp0s8 -p tcp --dport 443 -j REDIRECT --to-port 8080
 
 #launch mitmdump (same as mitmproxy, but can be launched in background) in transparent mode
-MITMPROXY_SSLKEYLOGFILE=/tmp/ssl_key_log ./mitmdump --mode transparent --showhost &
+MITMPROXY_SSLKEYLOGFILE=/tmp/ssl_key_log $MITMDUMP --mode transparent --showhost &
 export MITMPROXY_PID=$!
 
 #record data with tshark
@@ -54,4 +60,3 @@ tshark -nr /tmp/02_decrypted.pcap -T json -Y http -e http.request.line > /tmp/03
 #run mitmengine with prepared data
 chmod a+rw /tmp/01_uplink_encrypted.pcap /tmp/03_headers.json
 sudo -i -u linuxlite /bin/bash -c "(cd /home/linuxlite/mitmengine && go run cmd/demo/my_main.go -handshake /tmp/01_uplink_encrypted.pcap -header /tmp/03_headers.json)"
-
