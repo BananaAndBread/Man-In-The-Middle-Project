@@ -12,7 +12,9 @@ patches:
 
 my_main.patch - nearly the same main as was in mitmengine/cmd/demo but with additional outputs
 
-mitmengine.patch - my trials to fix existing mitmengine python scripts (not finished) + manually added signature
+mitmengine.patch - my trials to fix existing mitmengine python scripts (not finished) + manually added signature, more info in iteration V report  
+
+mitmproxy.patch - adds more signatures from OpenSSL, more info in iteration VI report
 
 ova:
 
