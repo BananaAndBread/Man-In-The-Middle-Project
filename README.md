@@ -6,7 +6,7 @@ bettercap_setup.sh - script to setup bettercap, more info in Iteration I report
 
 record_with_mitm.sh, record_without_mitm.sh - scripts to record actions passed through mitmproxy and analyze them with mitmengine (one emulate connection as if there is mitmproxy, another one as there is no mitmproxy), more info Iteration IV report
 
-router_script.sh - script to set up one virtual machine as a router (if another machine is connected to the “router” it will have an automatic access to the internet), it is possible not to launch the router_script.sh after every reboot by iptables-persistent usage.
+router_script.sh - script to set up one virtual machine as a router (if another machine is connected to the “router” it will have an automatic access to the internet), it is possible not to launch the router_script.sh after every reboot by iptables-persistent usage, more info in iteration I report
 
 patches:
 
